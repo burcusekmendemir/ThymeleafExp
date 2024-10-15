@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{site.title}"></title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+<main class="row">
+	<aside class="col-2">
+		<!-- menuyu replace etmek için -->
+		<div th:replace="~{fragment/menu.html :: menu}"></div>
+	</aside>
+	<section class="col-10">
+		<h2 th:text="#{site.index.message}"></h2>
+	</section>
+</main>
+</body>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</html>

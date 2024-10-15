@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{site.title}"></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+	<main class="row">
+		<aside class="col-2">
+			<!-- menuyu replace etmek için -->
+			<div th:replace="~{fragment/menu.html :: menu}"></div>
+		</aside>
+		<section class="col-10">
+			<div class="card shadow">
+				<div class="card-body">
+					<label th:text="#{ogrenci.id} + ' - '"></label> <label
+						class="form-label" th:text="${param.id}"></label>
+					<hr>
+					<label th:text="#{ogrenci.isim} + ' - '"></label> <label
+						class="form-label" th:text="${ogrenci.NAME}"></label>
+					<hr>
+					<label th:text="#{ogrenci.year} + ' - '"></label> <label
+						class="form-label" th:text="${ogrenci.YEAR}"></label>
+					<hr>
+					<label th:text="#{ogrenci.number} + ' - '"></label> <label
+						class="form-label" th:text="${ogrenci.OGR_NUMBER}"></label>
+					<hr>
+					<a class="btn btn-danger" href="/ogrenci" th:text="#{site.goback}"></a>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</html>

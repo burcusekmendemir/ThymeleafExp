@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{site.title}"></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+	<main class="row">
+		<aside class="col-2">
+			<!-- menuyu replace etmek için -->
+			<div th:replace="~{fragment/menu.html :: menu}"></div>
+		</aside>
+		<section class="col-10">
+			<div class="card shadow">
+				<div class="card-body">
+					<form action="guncelle" method="post" th:object="${ders}">
+						<div>
+							<select class="form-control mb-3" th:field="*{ogretmen}">
+								<option th:each="ogretmen : ${ogretmen_list}"
+									th:value="${ogretmen.ID}" th:text="${ogretmen.NAME}"></option>
+							</select>
+						</div>
+						<div>
+							<select class="form-control mb-3" th:field="*{konu}">
+								<option th:each="konu : ${konu_list}" th:value="${konu.ID}"
+									th:text="${konu.NAME}"></option>
+							</select>
+						</div>
+						<div class="row mt-3">
+							<div class="col-auto">
+								<input class="form-control" type="hidden" th:field="*{ID}"
+									required="required"> <input type="submit"
+									th:value="#{ders.guncelle}" class="btn btn-primary">
+							</div>
+							<div class="col-auto">
+								<a class="btn btn-danger" href="/ders" th:text="#{site.goback}"></a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{site.title}"></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+	<main class="row">
+		<aside class="col-2">
+			<!-- menuyu replace etmek için -->
+			<div th:replace="~{fragment/menu.html :: menu}"></div>
+		</aside>
+		<section class="col-10">
+			<div class="card shadow">
+				<div class="card-body">
+					<!-- ogrenci_kaydet ismindeki post mapping 'e gitceksin -->
+					<!-- th:object cnontroller dan data gelmesini bekler -->
+					<form action="guncelle" method="post" th:object="${ogrenci}">
+						<div>
+							<input class="form-control mb-3" type="text" id="ogrenciName"
+								th:field="*{NAME}" required="required" autocomplete="off"
+								th:placeholder="#{ogrenci.isim}" maxlength="100">
+						</div>
+						<div>
+							<input class="form-control mb-3" type="number" id="ogrenciNumber"
+								th:field="*{OGR_NUMBER}" required="required"
+								th:placeholder="#{ogrenci.number}">
+						</div>
+						<div>
+							<input class="form-control mb-3" type="number" id="ogrenciYear"
+								th:field="*{YEAR}" required="required"
+								th:placeholder="#{ogrenci.isim}">
+						</div>
+						<div class="row mt-3">
+							<div class="col-auto">
+								<input class="form-control" type="hidden" th:field="*{ID}"
+									required="required"> <input type="submit"
+									th:value="#{ogrenci.guncelle}" class="btn btn-primary">
+							</div>
+							<div class="col-auto">
+								<a class="btn btn-danger" href="/ogrenci"
+									th:text="#{site.goback}"></a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</html>

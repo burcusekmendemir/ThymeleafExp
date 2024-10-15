@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="container-fluid">
+	<h3>Hello thymeleaf</h3>
+	<table class="table table-striped table-bordered">
+		<thead class="table-dark">
+			<tr>
+				<td>ID</td>
+				<td>NAME</td>
+				<td>IS GICIK</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ogretmen : ${ogretmenler}">
+				<td th:text="${ogretmen.ID}"></td>
+				<td th:text="${ogretmen.NAME}"></td>
+				<td th:text="${ogretmen.IS_GICIK}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

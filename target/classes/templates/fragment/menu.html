@@ -1,0 +1,17 @@
+<div th:fragment="menu" th:with="url=${requestURI}" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <h5 sec:authorize="isAuthenticated()" class="page-link mb-3" th:text="${#authentication.getPrincipal().getUsername()}"></h5>
+    <a href="?lang=en" th:if = "${#locale.language == 'tr'}" class="page-link mb-3" th:text="#{site.english}"></a>
+    <a href="?lang=tr" th:if = "${#locale.language == 'en'}" class="page-link mb-3" th:text="#{site.turkish}"></a>
+    <a href="/ogretmen" th:class="${url} == '/ogretmen' ? 'page-link bg-info' : 'page-link'" th:text="#{menu.teacher}"></a>
+    <a href="/ogretmen/kaydet" sec:authorize="isAuthenticated()" th:class="${url} == '/ogretmen/kaydet' ? 'page-link bg-info ms-4' : 'page-link ms-4'" th:text="#{menu.save}"></a>
+    <a href="/ogrenci" th:class="${url} == '/ogrenci' ? 'page-link bg-info' : 'page-link'" th:text="#{menu.student}"></a>
+    <a href="/ogrenci/kaydet" sec:authorize="isAuthenticated()" th:class="${url} == '/ogrenci/kaydet' ? 'page-link bg-info ms-4' : 'page-link ms-4'" th:text="#{menu.save}"></a>
+    <a href="/konu" th:class="${url} == '/konu' ? 'page-link bg-info' : 'page-link'" th:text="#{menu.subject}"></a>
+    <a href="/konu/kaydet" sec:authorize="isAuthenticated()" th:class="${url} == '/konu/kaydet' ? 'page-link bg-info ms-4' : 'page-link ms-4'" th:text="#{menu.save}"></a>
+    <a href="/ders" th:class="${url} == '/ders' ? 'page-link bg-info' : 'page-link'" th:text="#{menu.lesson}"></a>
+    <a href="/ders/kaydet" sec:authorize="isAuthenticated()" th:class="${url} == '/ders/kaydet' ? 'page-link bg-info ms-4' : 'page-link ms-4'" th:text="#{menu.save}"></a>
+    <a href="/dersogrenci" th:class="${url} == '/dersogrenci' ? 'page-link bg-info' : 'page-link'" th:text="#{menu.registeration}"></a>
+    <a href="/dersogrenci/kaydet" sec:authorize="isAuthenticated()" th:class="${url} == '/dersogrenci/kaydet' ? 'page-link bg-info ms-4' : 'page-link ms-4'" th:text="#{menu.save}"></a>
+    <a href="/systemlogin" sec:authorize="!isAuthenticated()" th:class="${url} == '/systemlogin' ? 'page-link bg-info' : 'page-link'" th:text="#{site.login}"></a>
+    <a href="/logout" sec:authorize="isAuthenticated()" class="page-link" th:text="#{site.logout}"></a>
+</div>

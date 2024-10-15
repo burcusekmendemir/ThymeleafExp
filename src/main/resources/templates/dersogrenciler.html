@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{site.title}"></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid">
+	<main class="row">
+		<aside class="col-2">
+			<!-- menuyu replace etmek için -->
+			<div th:replace="~{fragment/menu.html :: menu}"></div>
+		</aside>
+		<section class="col-10">
+			<table class="table table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col" class="col-auto" th:text="#{dersogrenci.id}"></th>
+						<th scope="col" class="col-auto"
+							th:text="#{dersogrenci.ogrenci.isim}"></th>
+						<th scope="col" class="col-auto" th:text="#{dersogrenci.ders.id}"></th>
+						<th scope="col" class="col-auto"
+							th:text="#{dersogrenci.ders.ogretmen.isim}"></th>
+						<th scope="col" class="col-auto"
+							th:text="#{dersogrenci.ders.konu.isim}"></th>
+						<th scope="col" class="col-auto" th:text="#{dersogrenci.bilgiler}"></th>
+						<th sec:authorize="isAuthenticated()" scope="col" class="col-auto" th:text="#{dersogrenci.guncelle}"></th>
+						<th sec:authorize="hasRole('ADMIN')" scope="col" class="col-auto" th:text="#{dersogrenci.sil}"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="dersogrenci : ${dersogrenci_list}">
+						<td class="col-auto"><label th:text="${dersogrenci.ID}"></label></td>
+						<td class="col-auto"><label
+							th:text="${dersogrenci.ogrenci.NAME}"></label></td>
+						<td class="col-auto"><label th:text="${dersogrenci.ders.ID}"></label></td>
+						<td class="col-auto"><label
+							th:text="${dersogrenci.ders.ogretmen.NAME}"></label></td>
+						<td class="col-auto"><label
+							th:text="${dersogrenci.ders.konu.NAME}"></label></td>
+						<td class="col-auto"><a th:text="#{dersogrenci.bilgiler}"
+							class="btn btn-outline-primary"
+							th:href="'/dersogrenci/detay?id=' + ${dersogrenci.ID}"></a></td>
+						<td sec:authorize="isAuthenticated()" class="col-auto"><a th:text="#{dersogrenci.guncelle}"
+							class="btn btn-outline-success"
+							th:href="'/dersogrenci/guncelle?id=' + ${dersogrenci.ID}"></a></td>
+						<td sec:authorize="hasRole('ADMIN')" class="col-auto">
+							<form action="/dersogrenci/sil" method="post">
+								<input type="hidden" name="DERSOGRENCI_ID"
+									th:value="${dersogrenci.ID}"> <input type="submit"
+									th:value="#{dersogrenci.sil}" class="btn btn-outline-danger">
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+</html>
